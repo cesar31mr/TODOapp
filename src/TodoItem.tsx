@@ -1,28 +1,16 @@
-import React from "react";
+import { Item, TaskEntity } from "./Entity/TaskEntity";
 
-class TodoItems extends React.Component {
-    constructor(props: any) {
-        super(props);
-        this.createTask = this.createTask.bind(this);
+export default function TodoItems(props: TaskEntity) {
+    const createTask = (item: Item) => {
+        return <li onClick={() => props.deleteItem(item.key)} key={item.key.toString()}>{item.text}</li>
     }
 
-    createTask(item: any){
-        return <li onClick={() => this.delete(item.key)} key={item.key}>{item.text}</li>
-    }
-
-    delete(key: any){
-        this.props.delete(key);
-    }
-
-  render() {
-    const todoEntries = this.props.entries;
-    const listItems = todoEntries.map(this.createTask);
+    const todoEntries = props.items;
+    const listItems = todoEntries.map(createTask);
     return (
-      <ul>
-        {listItems}
-      </ul>
+        <ul>
+            {listItems}
+        </ul>
     );
-  }
-}
 
-export default TodoItems;
+}

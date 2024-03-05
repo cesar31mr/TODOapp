@@ -4,6 +4,6 @@ export interface Item {
 }
 
 export interface TaskEntity {
-    item: Item;
+    items: Item[];
     deleteItem: (key: Date) => void;
 }

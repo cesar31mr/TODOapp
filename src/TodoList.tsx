@@ -1,55 +1,42 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component } from "react";
+import { useState } from "react";
+import TodoItems from "./TodoItem";
+import { Item } from "./Entity/TaskEntity";
 
-class TodoList extends Component {
-    constructor(props: any) {
-        super(props);
-        this.state = {items: []}
-        this.addItem = this.addItem.bind(this);
-        this.deleteItem = this.deleteItem.bind(this)
-    }
+export default function TodoList() {
+    const [items, setItems] = useState<Item[]>([]);
 
-    addItem(e: any){
-        if(this._inputElement.value !== ""){
-            var newItem = {
-                text: this._inputElement.value,
-                key: Date.now()
+    function addItem(e: any){
+        e.preventDefault();
+        if(e.target["txtTask"].value !== ""){
+            const newItem = {
+                text: e.target["txtTask"].value,
+                key: new Date()
             }
 
-            this.setState((prevState: any) => {
-                return {
-                    items: prevState.items.concat(newItem)
-                }
-            })
+            setItems([...items, newItem])
 
-            this._inputElement.value = "";
-            e.preventDefault();
-
+            e.target["txtTask"].value = "";
         }
     }
 
-    deleteItem(key: any){
-        const filteredItems = this.state.items.filter(function(item: any){
+    function deleteItem(key: Date){
+        const filteredItems = items.filter(function(item){
             return (item.key !== key)
         })
 
-        this.setState({
-            items: filteredItems
-        })
+        setItems(filteredItems)
     }
 
-    render(){
-        return (
-            <div className="todoListMain">
-                <div className="header">
-                    <form onSubmit={this.addItem}>
-                        <input ref={(a) => this._inputElement = a} placeholder="Ingresar la tarea" />
-                        <button type="submit">Agregar</button>
-                    </form>
-                </div>
+    return (
+        <div className="todoListMain">
+            <div className="header">
+                <form onSubmit={addItem}>
+                    <input id="txtTask" placeholder="Ingresar la tarea" />
+                    <button type="submit">Agregar</button>
+                </form>
             </div>
-        )
-    }
+            <TodoItems items={items} deleteItem={deleteItem} />
+        </div>
+    );
 }
-
-export default TodoList;
