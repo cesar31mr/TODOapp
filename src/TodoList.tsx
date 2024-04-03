@@ -32,7 +32,7 @@ export default function TodoList() {
     return (
         <>
             <div className="text-center text-3xl font-semibold mb-4">
-                <h1 className="text-grey-darkest">Todo List</h1>
+                <h1 className="text-grey-darkest font-bold">Todo List</h1>
             </div>
 
             <div className="md:w-1/2 mx-auto">

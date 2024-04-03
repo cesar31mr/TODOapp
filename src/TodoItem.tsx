@@ -2,20 +2,6 @@ import { ChangeEvent } from "react";
 import { Item, TaskEntity } from "./Entity/TaskEntity";
 
 export default function TodoItems(props: TaskEntity) {
-    // const createTask = (item: Item) => {
-    //     return (
-    //         <div className="flex mb-4 items-center" key={item.key.toString()}>
-    //             <p className="w-full text-gray-700">{item.text}</p>
-    //             <button className="btn">Done</button>
-    //             <button
-    //                 onClick={() => props.deleteItem(item.key)}
-    //                 className="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red"
-    //             >
-    //                 Remove
-    //             </button>
-    //         </div>
-    //     );
-    // };
 
     const createTask = (item: Item) => {
         return (
@@ -79,7 +65,6 @@ export default function TodoItems(props: TaskEntity) {
     return (
         <>
             <ul>{listItems}</ul>
-            {/* <div>{listItems}</div> */}
         </>
     );
 }
