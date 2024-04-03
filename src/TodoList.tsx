@@ -30,23 +30,33 @@ export default function TodoList() {
     }
 
     return (
-        <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
-            <div className="mb-4">
-                <form onSubmit={addItem}>
-                    <h1 className="text-grey-darkest">Todo List</h1>
-                    <div className="flex mt-4">
-                        <input
-                            id="txtTask"
-                            className="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
-                            onChange={(e) => setMyTask(e.target.value)}
-                            value={myTask}
-                            placeholder="Ingresar la tarea"
-                        />
-                        <button className="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal" type="submit">Agregar</button>
-                    </div>
-                </form>
+        <>
+            <div className="text-center text-3xl font-semibold mb-4">
+                <h1 className="text-grey-darkest">Todo List</h1>
             </div>
-            <TodoItems items={items} deleteItem={deleteItem} />
-        </div>
+
+            <div className="md:w-1/2 mx-auto">
+                <div className="bg-white shadow-md rounded-lg p-6">
+                    <form onSubmit={addItem}>
+                        <div className="flex mb-4">
+                            <input
+                                id="todo-input"
+                                className="w-full px-4 py-2 mr-2 rounded-lg border-gray-300 focus:outline-none focus:border-blue-500"
+                                onChange={(e) => setMyTask(e.target.value)}
+                                value={myTask}
+                                placeholder="Ingresar la tarea"
+                            />
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                type="submit"
+                            >
+                                Agregar
+                            </button>
+                        </div>
+                    </form>
+                    <TodoItems items={items} deleteItem={deleteItem} />
+                </div>
+            </div>
+        </>
     );
 }
